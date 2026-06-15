@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^5.4.0",
     "@prisma/client": "6.19",
     "@prisma/extension-accelerate": "^3.0.1",
+    "axios": "^1.18.0",
     "dotenv": "^17.4.2",
     "next": "16.2.9",
     "next-auth": "^4.24.14",
