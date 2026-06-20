@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/input'
 import { api } from '@/lib/api'
+import { useRouter } from 'next/navigation'
 
 const schema = z.object({
   name: z.string().min(1, 'O nome é obrigatório'),
@@ -24,15 +25,19 @@ export function NewCustomerForm({ userId }: { userId: string }) {
     resolver: zodResolver(schema)
   })
 
+  const router = useRouter();
+
   async function handleRegisterCustomer(data: FormData) {
-    const response = await api.post('api/customer', {
+    await api.post('/api/customer', {
       name: data.name,
       phone: data.phone,
       email: data.email,
+      address: data.address,
       userId: userId
     })
 
-    console.log(response.data);
+    router.refresh();
+    router.replace('/dashboard/customer')
   }
 
   return (
