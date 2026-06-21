@@ -44,6 +44,10 @@ export async function DELETE(request: Request) {
   })
 
   if (findTickets) {
+    return NextResponse.json({ error: 'ID do cliente é obrigatório' }, { status: 400 })
+  }
+
+  if (findTickets) {
     return NextResponse.json({ error: 'Não é possível deletar um cliente que possui tickets associados' }, { status: 400 })
   }
 
